@@ -726,7 +726,8 @@ new_descriptor (int control)
     IAC_option(dnew, DO, TELOPT_LFLOW);
     IAC_option(dnew, DO, TELOPT_TTYPE);
     IAC_option(dnew, DO, TELOPT_NAWS);
-    IAC_option(dnew, WILL, TELOPT_COMPRESS2);
+    /* sixthgear removed MCCP protocol sent to allow Windows XP terminal to work */
+    /* IAC_option(dnew, WILL, TELOPT_COMPRESS2); */
 }
 
 
