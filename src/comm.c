@@ -693,11 +693,12 @@ new_descriptor (int control)
     DESCRIPTOR_DATA *dnew;
     struct sockaddr_in sock;
     int desc;
-    int size;
+    socklen_t addr_size;
 
-    size = sizeof(sock);
+    addr_size = sizeof(sock);
+    
 
-    if ( (desc = accept(control, (struct sockaddr *) &sock, &size)) < 0 )
+    if ( (desc = accept(control, (struct sockaddr *) &sock, &addr_size)) < 0 )
     {
         logerr("New_descriptor: accept");
         return;
@@ -918,7 +919,7 @@ read_from_descriptor (DESCRIPTOR_DATA * d)
         }
     }
 
-    process_telnet(d, buf, idx);
+    process_telnet(d, (const unsigned char*) buf, idx);
     return (TRUE);
 }
 
